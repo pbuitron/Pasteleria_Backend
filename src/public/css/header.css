@@ -1,0 +1,23 @@
+/* Estilos para el componente Header */
+header {
+    background-color: #F8E0E6; /* Rosa pastel suave */ 
+  }
+  
+  .navbar-brand {
+    font-family: 'Pacifico', cursive; /* Fuente manuscrita */
+    color: #D46A6A; /* Rosa intenso */
+  }
+  
+  .nav-link {
+    color: #D46A6A; /* Rosa intenso */
+  }
+  
+  .nav-link.active {
+    color: #9C2727; /* Rojo oscuro */ 
+    font-weight: bold;
+  }
+  
+  /* Opcional: Agregar un borde inferior sutil */
+  .navbar {
+    border-bottom: 1px solid #D46A6A; 
+  }

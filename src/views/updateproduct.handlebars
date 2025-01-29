@@ -1,0 +1,61 @@
+<div class="container">
+    <h1>Actualizar Producto</h1>
+    <form id="uploadForm" method="post"  action="/realtimeproducts/:id" enctype="multipart/form-data">
+       
+        
+        <div class="form-group">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" >
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea id="description" name="description" ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="code">Código (único):</label>
+            <input type="text" id="code" name="code" >
+        </div>
+
+        <div class="form-group">
+            <label for="price">Precio:</label>
+            <input type="number" id="price" name="price" min="0" >
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" min="0" >
+        </div>
+
+        <div class="form-group">
+            <label for="category">Categoría:</label>
+            <select id="category" name="category" >
+                <option value="">Seleccione una categoría</option>
+                <option value="Tortas">Tortas</option>
+                <option value="Bocaditos">Bocaditos</option>
+                <option value="Galletas">Galletas</option>
+                <option value="Postres">Postres</option>
+            </select>
+        </div>
+
+         <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status" >
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+        </div>
+
+         <div class="file-input-container">
+                    <label for="file-upload" class="file-input-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="upload-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <span>Haga clic para cargar o arrastre y suelte</span>
+                        <span class="file-name">Solo imagenes JPG y PNG</span>
+                    </label>
+                    <input id="file-upload" type="file" name="thumbnails" >
+                </div>
+
+        <button type="submit" class="submit-button">Actualizar producto</button>
+    </form>
+</div>

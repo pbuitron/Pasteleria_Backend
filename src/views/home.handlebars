@@ -1,0 +1,23 @@
+<h1 class="title"> Articulos en Tienda</h1>
+
+<div class="container">
+    {{#each productos}}
+
+
+    <div class="product-card">
+        <div class="product-image-container">
+            <img src="{{this.thumbnails}}" alt="{{this.title}}" class="product-image" />
+        </div>
+        <div class="product-content">
+            <div class="product-header">
+                <p class="product-title">{{this.title}} </p>
+                <p class="product-price">s/. {{this.price}} </p>
+            </div>
+            <p class="product-description">
+                {{this.description}}
+            </p>
+
+        </div>
+    </div>
+    {{/each}}
+</div>
