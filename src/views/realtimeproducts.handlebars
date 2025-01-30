@@ -1,6 +1,7 @@
 <div class="container">
+    <div id="productos" class="productos"></div>
     <h1>Crear Nuevo Producto</h1>
-    <form id="uploadForm" method="post" action="/realtimeproducts" enctype="multipart/form-data">
+    <form id="uploadForm" method="post" action="/" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Título:</label>
             <input type="text" id="title" name="title">
@@ -47,7 +48,7 @@
 
 
         <div class="file-input-container">
-            <label for="file-upload" class="file-input-label">
+            <label for="thumbnails" class="file-input-label">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="upload-icon">
@@ -58,17 +59,17 @@
                 <span>Haga clic para cargar o arrastre y suelte</span>
                 <span class="file-name">Solo imagenes JPG y PNG</span>
             </label>
-            <input id="file-upload" type="file" name="thumbnails" required>
+            <input id="thumbnails" type="file" name="thumbnails" required>
         </div>
 
         <button type="submit" class="submit-button" id="crear-producto">Crear producto</button>
 
     </form>
 </div>
-<script src="/js/upload.js"></script>
 
+<script src="/js/upload.js"></script>
 <script>
-    document.getElementById('file-upload').addEventListener('change', function (e) {
+    document.getElementById('thumbnails').addEventListener('change', function (e) {
         let fileName = e.target.files[0] ? e.target.files[0].name : 'PDF';
         document.querySelector('.file-name').textContent = fileName;
     });

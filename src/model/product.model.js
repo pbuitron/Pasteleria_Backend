@@ -38,6 +38,6 @@ import { Schema, model } from "mongoose";
 
  )
 
- const Product = model('products_no_imagens', producto)
+ const Product = model('products', producto)
 
  export default Product

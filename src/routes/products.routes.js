@@ -9,31 +9,42 @@ const productManager = new ProductManager()
 
 
 
+
 productRouter.route('/')
+/*
 .get(async (req, res) =>  {
     try {
         const productos = await productManager.getAllProducts()
-        res.render('home', {productos, title:'Productos'});
-    } catch (error) {
-        console.error('Error al obtener productos:', error);
-        res.status(500).json({ message: 'Error al obtener productos - vw' });
-    }
-})
-
-
-productRouter.route('/realtimeproducts')
-.get(async (req, res) =>  {
-    try {
-        //const productos = await productManager.getAllProducts()
-        res.render('realtimeproducts', {
-           
-            title:'Nuevo Producto',
-            path: 'realtimeproducts',
+        res.render('home', {
+          productos,
+            title:'Productos en Stock',
+            path: 'home',
         });
     } catch (error) {
         console.error('Error al obtener productos:', error);
-        res.status(500).json({ message: 'Error al obtener productos - vw' });
+        res.status(500).json({ message: 'Error al obtener productos - pr' });
     }
+})
+*/
+.get(async (req, res) => {
+  try {
+    const { limit } = req.query;
+    const limitNumber = limit ? parseInt(limit, 10) : 10;
+
+    if (isNaN(limitNumber) || limitNumber < 1) {
+      return res.status(400).json({ error: 'Limit must be a positive number' });
+    }
+
+    const productos = await productManager.getAllProducts(limitNumber);
+    res.render('home', {
+      productos,
+      title: 'Productos en Stock',
+      path: 'home',
+    });
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+    res.status(500).json({ message: 'Error al obtener productos - pr' });
+  }
 })
 .post(upload.single('thumbnails'), async (req, res) => {
     try {
@@ -57,7 +68,7 @@ productRouter.route('/realtimeproducts')
     }
   });
 
-  productRouter.route('/realtimeproducts/:id')
+  productRouter.route('/:pid')
   .get(async (req, res)=>{
 
     try {

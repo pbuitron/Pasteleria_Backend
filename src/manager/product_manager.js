@@ -3,8 +3,9 @@ import {unlink} from 'fs/promises'
 
 
 class ProductManager {
+/*
   async getAllProducts() {
-    try {
+   /try {
       const productos = await Product.find().lean();
       return productos;
     } catch (error) {
@@ -12,11 +13,22 @@ class ProductManager {
       throw error;
     }
   }
+*/
+async getAllProducts(limit = 10) {
+  try {
+    // Obtener todos los productos de la base de datos
+    const productos = await Product.find().limit(limit).lean();
+    return productos;
+  } catch (error) {
+    console.error('Error al obtener productos / pm:', error);
+    throw error;
+  }
+}
 
    async getProductById(req, res) {
     try {
-      const { id} = req.params
-      const producto = await Product.findById(id).lean()
+      const { pid} = req.params
+      const producto = await Product.findById(pid).lean()
       
       if (producto) {
         console.log({producto});
@@ -54,33 +66,10 @@ class ProductManager {
     }
   }
 
-/*
-  async updateProduct(req, res) {
-    try {
-      const productId = req.params.id;
-      const data = req.body;
-  
-      const producto = await Product.findById(productId);
-  
-      if (!producto) {
-        console.log('No se encontró el producto solicitado');
-        return { error: 'Producto no encontrado' };
-      }
-
-
-  
-      const productoActualizado = await Product.findByIdAndUpdate(productId, data, { new: true });
-  
-      return productoActualizado;
-    } catch (err) {
-      console.error('Error al actualizar producto:', err);
-      throw err;
-    }
-  }*/
 
   async updateProduct(req, res) {
     try {
-      const productId = req.params.id;
+      const productId = req.params.pid;
       //const data = req.body;
   
       const products = await Product.findById(productId);
@@ -112,7 +101,7 @@ class ProductManager {
   async deleteProduct(req) {
     try {
 
-      const productId = req.params.id
+      const productId = req.params.pid
       const productoAEliminar =await Product.findById(productId)
       if (!productoAEliminar) {
         console.log('No se encontró el producto solicitado');
