@@ -11,33 +11,56 @@ const productManager = new ProductManager()
 
 
 productRouter.route('/')
-/*
-.get(async (req, res) =>  {
+  /*
+  .get(async (req, res) => {
     try {
-        const productos = await productManager.getAllProducts()
-        res.render('home', {
-          productos,
-            title:'Productos en Stock',
-            path: 'home',
-        });
+      const { limit } = req.query;
+      const limitNumber = limit ? parseInt(limit, 10) : 10;
+  
+      if (isNaN(limitNumber) || limitNumber < 1) {
+        return res.status(400).json({ error: 'Limite debe tener un numero positivo' });
+      }
+  
+      const productos = await productManager.getAllProducts(limitNumber);
+      res.render('home', {
+        productos,
+        title: 'Productos en Stock',
+        path: 'home',
+      });
     } catch (error) {
-        console.error('Error al obtener productos:', error);
-        res.status(500).json({ message: 'Error al obtener productos - pr' });
+      console.error('Error al obtener productos:', error);
+      res.status(500).json({ message: 'Error al obtener productos - pr' });
     }
-})
+  })
 */
 .get(async (req, res) => {
   try {
-    const { limit } = req.query;
+    const { limit, page } = req.query;
     const limitNumber = limit ? parseInt(limit, 10) : 10;
+    const pageNumber = page ? parseInt(page, 10) : 1;
 
     if (isNaN(limitNumber) || limitNumber < 1) {
-      return res.status(400).json({ error: 'Limit must be a positive number' });
+      return res.status(400).json({ error: 'El límite debe ser un número positivo' });
     }
 
-    const productos = await productManager.getAllProducts(limitNumber);
+    if (isNaN(pageNumber) || pageNumber < 1) {
+      return res.status(400).json({ error: 'La página debe ser un número positivo' });
+    }
+
+    const productos = await productManager.getAllProducts(limitNumber, pageNumber);
+console.log(productos)
+
+
     res.render('home', {
-      productos,
+      productos: productos.docs, 
+      pagination: {
+        totalPages: productos.totalPages,
+        currentPage: productos.page,
+        hasPrevPage: productos.hasPrevPage,
+        hasNextPage: productos.hasNextPage,
+        prevPage: productos.prevPage,
+        nextPage: productos.nextPage,
+      },
       title: 'Productos en Stock',
       path: 'home',
     });
@@ -46,15 +69,17 @@ productRouter.route('/')
     res.status(500).json({ message: 'Error al obtener productos - pr' });
   }
 })
-.post(upload.single('thumbnails'), async (req, res) => {
+
+
+  .post(upload.single('thumbnails'), async (req, res) => {
     try {
       const nuevoProducto = await productManager.createProduct(req);
-      
-      res.render('realtimeproducts', { 
+
+      res.render('realtimeproducts', {
         producto: nuevoProducto,
         path: 'realtimeproducts',
         title: 'Nuevo Producto'
-     });
+      });
     } catch (err) {
       if (err instanceof multer.MulterError) {
         if (err.code === 'LIMIT_FILE_SIZE') {
@@ -68,22 +93,22 @@ productRouter.route('/')
     }
   });
 
-  productRouter.route('/:pid')
-  .get(async (req, res)=>{
+productRouter.route('/:pid')
+  .get(async (req, res) => {
 
     try {
-        const producto = await productManager.getProductById(req)
-        res.status(200).json(producto)
-} catch (error) {
-    console.error('Error al obtener producto por ID:', error);
+      const producto = await productManager.getProductById(req)
+      res.status(200).json(producto)
+    } catch (error) {
+      console.error('Error al obtener producto por ID:', error);
       res.status(500).json({ message: 'Error al obtener producto por id - rt' });
-}
- 
+    }
+
 
 
   })
 
-.put(upload.single('thumbnails'), async (req, res) => {
+  .put(upload.single('thumbnails'), async (req, res) => {
     try {
       const productoActualizado = await productManager.updateProduct(req, res);
       res.status(200).json(productoActualizado);
@@ -93,7 +118,7 @@ productRouter.route('/')
     }
   })
 
-  .delete(async (req, res)=>{
+  .delete(async (req, res) => {
     const productoeliminado = await productManager.deleteProduct(req)
     res.status(200).json(productoeliminado)
   })

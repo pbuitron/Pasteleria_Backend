@@ -4,17 +4,7 @@ import {unlink} from 'fs/promises'
 
 class ProductManager {
 /*
-  async getAllProducts() {
-   /try {
-      const productos = await Product.find().lean();
-      return productos;
-    } catch (error) {
-      console.error('Error al obtener productos / pm:', error);
-      throw error;
-    }
-  }
-*/
-async getAllProducts(limit = 10) {
+async getAllProducts(limit = 10, page = 1) {
   try {
     // Obtener todos los productos de la base de datos
     const productos = await Product.find().limit(limit).lean();
@@ -24,6 +14,24 @@ async getAllProducts(limit = 10) {
     throw error;
   }
 }
+*/
+
+async getAllProducts(limit = 10, page = 1) {
+  try {
+    const options = {
+      page,
+      limit,
+      lean:true
+    };
+
+    const productos = await Product.paginate({}, options);
+    return productos;
+  } catch (error) {
+    console.error('Error al obtener productos / pm:', error);
+    throw error;
+  }
+}
+
 
    async getProductById(req, res) {
     try {
@@ -70,8 +78,6 @@ async getAllProducts(limit = 10) {
   async updateProduct(req, res) {
     try {
       const productId = req.params.pid;
-      //const data = req.body;
-  
       const products = await Product.findById(productId);
   
       if (!products) {
