@@ -37,7 +37,7 @@ import mongoosePaginate from "mongoose-paginate-v2"
     thumbnails : {
         type: String,
     }
-    }
+    }, { timestamps: true }
 
  )
 

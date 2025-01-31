@@ -3,6 +3,7 @@ import  express from 'express'
 import { engine } from 'express-handlebars'
 import connectToDDBB from './config/database.js'
 import productRouter from './routes/products.routes.js'
+import cartRouter from './routes/carts.routes.js'
 import viewRouter from './routes/views.routes.js'
 
 
@@ -18,6 +19,7 @@ app.use(express.static('src/public'))
 connectToDDBB()
 
 app.use('/api/products', productRouter)
+app.use('/api/carts', cartRouter)
 app.use('/', viewRouter)
 
 

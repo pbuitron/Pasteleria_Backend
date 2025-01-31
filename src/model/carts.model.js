@@ -1,13 +1,14 @@
 import {Schema, model} from "mongoose";
-import Product from "./product.model";
+import mongoose from "mongoose";
+//import Product from "./product.model.js";
 
-const cart = new Schema({
+const cartSchema = new Schema({
 
     products: [
         {
             product: { 
                 type: mongoose.Schema.Types.ObjectId, 
-                ref: 'Product',
+                ref: 'products',
                 required: true },
             quantity: { 
                 type: Number, 
@@ -19,6 +20,6 @@ const cart = new Schema({
     ]
 }, { timestamps: true })
 
-const Cart = model('carts', cart)
+const Cart = model('carts', cartSchema)
 
 export default Cart
