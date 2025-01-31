@@ -28,7 +28,7 @@ class CartManager {
     async getCartById(req, res){
         try {
             const {cid}= req.params
-            const carrito = Cart.findById(cid).populate('products.product')
+            const carrito = Cart.findById(cid).populate('products.product', 'title description price stock')
             if (carrito)  console.log(carrito)
             return carrito
 
@@ -74,7 +74,58 @@ try {
 
 
     }
+    async removeProductFromCart(req, res){
+        try {
+            const { cid, pid} = req.params
+            const carrito = await Cart.findById(cid)
+            if(!carrito) return console.log('Cart no encontrado')
+            
+            carrito.products = carrito.products.filter(
+                prod => prod.product.toString()!==pid
+            )
+            await carrito.save()
+            return carrito
+        } catch (error) {
+            console.error('Error al eliminar producto del Cart - CM:', error);
+                throw error;
+        }
+    }
 
+    async clearCart(req, res){
+        try {
+            const {cid} = req.params
+            const carrito = await Cart.findById(cid)
+            if(!carrito) return console.log('Cart no encontrado')
+
+            carrito.products = []
+            await carrito.save()
+            return carrito
+        } catch (error) {
+            console.error('Error al vaciar Cart - CM:', error);
+                throw error;
+        }
+    }
+    async updateProductQuantity(req, res){
+        try {
+            const {cid, pid} = req.params
+            const {quantity} = req.body
+            if(quantity <1 ) return console.log('Cantidad dene ser mayor a 0')
+            
+            const carrito = await Cart.findById(cid)
+            if(!carrito) return console.log('Cart no encontrado')
+
+            const indiceProducto = carrito.products.findIndex(prod => prod.product.toString()=== pid)
+            if(indiceProducto===-1)return console.log('Producto no encontrado')
+
+            carrito.products[indiceProducto].quantity = quantity
+            await carrito.save()
+            return carrito
+
+        } catch (error) {
+            console.error('Error al actualizar Cart - CM:', error);
+                throw error;
+        }
+    }
 }
 
 export default CartManager

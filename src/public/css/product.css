@@ -89,7 +89,7 @@ body {
     display: inline-block;
     width: 100%;
     padding: 14px 20px;
-    background: linear-gradient(135deg, #7eabff, #ff758c);
+    background: linear-gradient(135deg, #1961e7, #093ff3);
     color: white;
     font-size: 1.3rem;
     font-weight: bold;
@@ -103,7 +103,7 @@ body {
 }
 
 .add-to-cart-btn:hover {
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    background: linear-gradient(135deg, #1468d6, #0885d8);
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(255, 117, 140, 0.3);
 }

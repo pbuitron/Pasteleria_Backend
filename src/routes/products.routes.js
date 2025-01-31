@@ -42,7 +42,7 @@ productRouter.route('/')
     console.log(productos);
    
     res.render('home', {
-      status: "success",
+      
       productos: productos.docs,
       pagination: {
         totalPages: productos.totalPages,
@@ -56,7 +56,7 @@ productRouter.route('/')
       title: 'Productos en Stock',
       path: 'home',
     });
-
+  
   } catch (error) {
     console.error('Error al obtener productos:', error);
     res.status(500).json({ status: "error", message: "Error interno del servidor" });

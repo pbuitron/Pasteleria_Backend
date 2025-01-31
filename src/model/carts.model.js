@@ -1,5 +1,5 @@
 import {Schema, model} from "mongoose";
-import mongoose from "mongoose";
+//import mongoose from "mongoose";
 //import Product from "./product.model.js";
 
 const cartSchema = new Schema({
@@ -7,7 +7,7 @@ const cartSchema = new Schema({
     products: [
         {
             product: { 
-                type: mongoose.Schema.Types.ObjectId, 
+                type: Schema.Types.ObjectId, 
                 ref: 'products',
                 required: true },
             quantity: { 

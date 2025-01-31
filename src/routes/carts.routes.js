@@ -40,8 +40,15 @@ cartRouter.route('/:cid')
         res.status(500).json({ message: `Error al obtener el carrito con id ${req}`, error: error.message })
     }
 })
+.put(async (req, res)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+})
 
-cartRouter.route('/:cid/product/:pid')
+cartRouter.route('/:cid/products/:pid')
 .post(
     async (req, res, next) => {
         try {
@@ -59,6 +66,29 @@ cartRouter.route('/:cid/product/:pid')
             res.status(500).json({ message: "Error al agregar producto al carrito", error: error.message });
         }
 })
+.delete(
+    async (req, res ) => {
+        try {
+            const carritoActualizado = await cartsManager.removeProductFromCart(req, res)
+            res.status(200).json({message: "Producto Eliminado del carrito", carrito:carritoActualizado})
+            return carritoActualizado
+        } catch (error) {
+            res.status(500).json({ message: "Error al eliminar producto del carrito", error: error.message });
+
+        }
+    }
+)
+.put(async(req, res)=>{
+    try {
+        const carritoModificado = await cartsManager.updateProductQuantity(req, res)
+        res.status(200).json({message: "Cantidad actualizada carrito", carrito:carritoModificado})
+        return carritoModificado
+    } catch (error) {
+        res.status(500).json({ message: "Error al actualizar el carrito", error: error.message });
+        
+    }
+})
+
 
 
 export default cartRouter
