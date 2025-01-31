@@ -3,34 +3,23 @@ import {unlink} from 'fs/promises'
 
 
 class ProductManager {
-/*
-async getAllProducts(limit = 10, page = 1) {
-  try {
-    // Obtener todos los productos de la base de datos
-    const productos = await Product.find().limit(limit).lean();
-    return productos;
-  } catch (error) {
-    console.error('Error al obtener productos / pm:', error);
-    throw error;
+  async getAllProducts(limit = 10, page = 1, filter = {}, sort = {}) {
+    try {
+      const productos = await Product.paginate(filter, {
+        limit,
+        page,
+        sort,
+        lean: true
+      });
+  
+      return productos;
+    } catch (error) {
+      console.error('Error al obtener productos / pm:', error);
+      throw error;
+    }
   }
-}
-*/
+  
 
-async getAllProducts(limit = 10, page = 1) {
-  try {
-    const options = {
-      page,
-      limit,
-      lean:true
-    };
-
-    const productos = await Product.paginate({}, options);
-    return productos;
-  } catch (error) {
-    console.error('Error al obtener productos / pm:', error);
-    throw error;
-  }
-}
 
 
    async getProductById(req, res) {

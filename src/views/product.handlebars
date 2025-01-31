@@ -1,0 +1,22 @@
+<h1 class="product-title">🛍️ Detalle del Producto</h1>
+
+<div class="product-detail-container">
+    <div class="product-image-box">
+        <img src="{{producto.thumbnails}}" alt="{{producto.title}}" class="product-image-large" />
+    </div>
+    <div class="product-info-box">
+        <h2 class="product-name">{{producto.title}}</h2>
+        <p class="product-description"><strong>Descripción:</strong> {{producto.description}}</p>
+        <p class="product-price"><strong>Precio:</strong> s/. {{producto.price}}</p>
+        <p class="product-category"><strong>Categoría:</strong> {{producto.category}}</p>
+        <p class="product-stock"><strong>Stock disponible:</strong> {{producto.stock}}</p>
+        
+        <button class="add-to-cart-btn" data-id="{{producto._id}}">
+            🛒 Agregar al carrito
+        </button>
+    </div>
+</div>
+
+<script src="/js/scripts_product.js"></script>
+   
+

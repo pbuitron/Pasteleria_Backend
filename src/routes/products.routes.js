@@ -11,48 +11,39 @@ const productManager = new ProductManager()
 
 
 productRouter.route('/')
-  /*
-  .get(async (req, res) => {
-    try {
-      const { limit } = req.query;
-      const limitNumber = limit ? parseInt(limit, 10) : 10;
-  
-      if (isNaN(limitNumber) || limitNumber < 1) {
-        return res.status(400).json({ error: 'Limite debe tener un numero positivo' });
-      }
-  
-      const productos = await productManager.getAllProducts(limitNumber);
-      res.render('home', {
-        productos,
-        title: 'Productos en Stock',
-        path: 'home',
-      });
-    } catch (error) {
-      console.error('Error al obtener productos:', error);
-      res.status(500).json({ message: 'Error al obtener productos - pr' });
-    }
-  })
-*/
 .get(async (req, res) => {
   try {
-    const { limit, page } = req.query;
+    const { limit, page, category, status, sort } = req.query;
+
     const limitNumber = limit ? parseInt(limit, 10) : 10;
     const pageNumber = page ? parseInt(page, 10) : 1;
 
     if (isNaN(limitNumber) || limitNumber < 1) {
-      return res.status(400).json({ error: 'El límite debe ser un número positivo' });
+      return res.status(400).json({ status: "error", message: "El límite debe ser un número positivo" });
     }
-
     if (isNaN(pageNumber) || pageNumber < 1) {
-      return res.status(400).json({ error: 'La página debe ser un número positivo' });
+      return res.status(400).json({ status: "error", message: "La página debe ser un número positivo" });
     }
 
-    const productos = await productManager.getAllProducts(limitNumber, pageNumber);
-console.log(productos)
 
+    let filter = {};
+    
 
+    if (category) filter.category = category;
+    if (status) filter.status = status === "true"; 
+    console.log(filter);
+    
+    let sortOption = {};
+    if (sort === "asc") sortOption.price = 1;
+    if (sort === "desc") sortOption.price = -1;
+
+    
+    const productos = await productManager.getAllProducts(limitNumber, pageNumber, filter, sortOption);
+    console.log(productos);
+   
     res.render('home', {
-      productos: productos.docs, 
+      status: "success",
+      productos: productos.docs,
       pagination: {
         totalPages: productos.totalPages,
         currentPage: productos.page,
@@ -61,15 +52,16 @@ console.log(productos)
         prevPage: productos.prevPage,
         nextPage: productos.nextPage,
       },
+      filters: { category, status, sort },
       title: 'Productos en Stock',
       path: 'home',
     });
+
   } catch (error) {
     console.error('Error al obtener productos:', error);
-    res.status(500).json({ message: 'Error al obtener productos - pr' });
+    res.status(500).json({ status: "error", message: "Error interno del servidor" });
   }
 })
-
 
   .post(upload.single('thumbnails'), async (req, res) => {
     try {

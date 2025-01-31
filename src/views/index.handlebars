@@ -7,7 +7,7 @@
     <!-- Sidebar de filtros -->
     <aside id="filter-sidebar" class="filter-sidebar">
         <h2>Filtros</h2>
-        <form action="/api/products" method="GET" class="filter-form">
+        <form action="/products" method="GET" class="filter-form">
             <label for="category">Categoría:</label>
             <select name="category" id="category">
                 <option value="">Todas</option>
@@ -38,7 +38,7 @@
     <!-- Contenedor de productos -->
     <div class="product-container">
         {{#each productos}}
-        <div class="product-card">
+        <div class="product-card" data-id="{{this._id}}">
             <div class="product-image-container">
                 <img src="{{this.thumbnails}}" alt="{{this.title}}" class="product-image" />
             </div>
@@ -50,9 +50,8 @@
                 <p class="product-description">
                     {{this.description}}
                 </p>
-                <!-- Botón para agregar al carrito -->
-                <button class="add-to-cart-button" data-id="{{this._id}}">Agregar al carrito</button>
             </div>
+            
         </div>
         {{/each}}
     </div>
@@ -73,3 +72,6 @@
     </div>
 </div>
 
+<script src="/js/scripts_index.js">
+    
+</script>
