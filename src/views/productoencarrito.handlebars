@@ -1,11 +1,11 @@
-<div class="container mt-5">
+<div class="container mt-4">
     <h2 class="text-center mb-4">🛒 Carrito de Compras</h2>
 
     {{#if carrito.products.length}}
         <div class="row">
             {{#each carrito.products}}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-lg">
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
                         <img src="{{this.product.thumbnails}}" class="card-img-top" alt="{{this.product.title}}">
                         <div class="card-body">
                             <h5 class="card-title">{{this.product.title}}</h5>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <h4>Total: S/. <span id="total-price">0</span></h4>
+            <h4>Total: $<span id="total-price">0</span></h4>
         </div>
     {{else}}
         <p class="text-center text-muted">Tu carrito está vacío 🛒</p>
@@ -39,22 +39,12 @@
         document.getElementById("total-price").innerText = totalPrice.toFixed(2);
 
         document.querySelectorAll(".remove-product").forEach(button => {
-            button.addEventListener("click", async function () {
+            button.addEventListener("click", function () {
                 const productId = this.getAttribute("data-id");
-
-                try {
-                    const response = await fetch(`/api/products/${productId}`, { method: "DELETE" });
-                    const result = await response.json();
-
-                    if (response.ok) {
-                        alert(result.message);
-                        location.reload();
-                    } else {
-                        alert("Error: " + result.error);
-                    }
-                } catch (error) {
-                    console.error("Error al eliminar producto:", error);
-                }
+                fetch(`/api/carts/{{carrito._id}}/products/${productId}`, { method: "DELETE" })
+                    .then(response => response.json())
+                    .then(() => location.reload())
+                    .catch(error => console.error("Error al eliminar producto:", error));
             });
         });
     });
