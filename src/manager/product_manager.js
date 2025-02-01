@@ -18,11 +18,8 @@ class ProductManager {
       throw error;
     }
   }
-  
 
-
-
-   async getProductById(req, res) {
+  async getProductById(req, res) {
     try {
       const { pid} = req.params
       const producto = await Product.findById(pid).lean()
@@ -40,10 +37,16 @@ class ProductManager {
     }
   }
 
+
   async createProduct(req, res) {
     try {
-      const { title, description, code, price, status, stock, category } = req.body;
+      
+      const { title, description, code, price, stock, category, status=true , } = req.body;
+      if (!title || !description || !code || !price || !stock || !category) {
+      throw new error('Todos los campos son obligatorios excepto thumbnails' );
+    }
 
+    
       const producto = new Product();
       producto.title = title;
       producto.description = description;
@@ -62,6 +65,7 @@ class ProductManager {
       throw error;
     }
   }
+
 
 
   async updateProduct(req, res) {

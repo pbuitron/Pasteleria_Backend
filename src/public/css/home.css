@@ -1,191 +1,197 @@
+/* Estilos generales */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #FAF3E0; /* Beige claro */
-    color: #5C3D2E; /* Marrón oscuro */
+    font-family: 'Poppins', sans-serif; /* Fuente similar a la de Dulcefina */
     margin: 0;
     padding: 0;
+    background-color: #f8f8f8; /* Color de fondo similar */
 }
 
-/* Título principal */
 .title {
-    text-align: center;
-    font-size: 2rem;
-    color: #8B5E3C; /* Marrón cálido */
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center; /* Centrado como en Dulcefina */
+    color: #333; /* Color de texto oscuro */
 }
 
-/* Contenedor principal */
+.toggle-button {
+    display: none; /* Oculto en pantallas grandes */
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
 .shop-container {
     display: flex;
-    max-width: 1200px;
-    margin: auto;
-    gap: 20px;
+    flex-wrap: wrap; /* Para que los productos se ajusten */
+    justify-content: space-between; /* Espacio entre sidebar y productos */
+    padding: 20px;
 }
 
 /* Sidebar de filtros */
 .filter-sidebar {
-    background: #FFE8C5; /* Tono crema */
-    padding: 20px;
-    border-radius: 10px;
     width: 250px;
-    transition: transform 0.3s ease-in-out;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    position: sticky; /* El sidebar se fija al desplazar */
+    top: 20px; /* Espacio desde la parte superior */
+    height: fit-content; /* Ajusta la altura al contenido */
 }
 
 .filter-sidebar h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #333;
 }
 
-/* Estilos para formularios */
 .filter-form label {
-    font-weight: bold;
     display: block;
-    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #555;
 }
 
-.filter-form select, .filter-button {
+.filter-form select,
+.filter-form button {
     width: 100%;
     padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #B08968;
-    background-color: #fff;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .filter-button {
-    background-color: #8B5E3C;
-    color: white;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-.filter-button:hover {
-    background-color: #5C3D2E;
-}
-
-/* Botón para ocultar filtros */
-.toggle-button {
-    display: none;
-    background: #8B5E3C;
-    color: white;
-    padding: 10px;
+    background-color: #ff6f00; /* Color naranja similar al de Dulcefina */
+    color: #fff;
     border: none;
     cursor: pointer;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    border-radius: 5px;
-}
-
-@media (max-width: 768px) {
-    .toggle-button {
-        display: block;
-    }
-    
-    .filter-sidebar {
-        position: fixed;
-        left: -270px;
-        top: 0;
-        height: 100vh;
-        z-index: 10;
-        padding: 20px;
-    }
 }
 
 /* Contenedor de productos */
 .product-container {
+    /* Ancho máximo del contenedor (ajusta según tus necesidades) */
+    max-width: 900px; /* Por ejemplo, 900px de ancho máximo */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    flex-grow: 1;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Diseño adaptable */
+    grid-gap: 20px;
 }
 
-/* Tarjetas de productos */
 .product-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.2s ease-in-out;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Para que la imagen no se salga */
+    transition: transform 0.2s; /* Transición para el hover */
 }
 
 .product-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.02); /* Ligero aumento al pasar el mouse */
 }
 
 .product-image-container {
-    background: #FFE8C5;
-    padding: 10px;
-    border-radius: 10px;
+    overflow: hidden; /* Para que la imagen se ajuste */
+    width: 100%;
 }
 
 .product-image {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    display: block;
+    object-fit: cover; /* La imagen cubre el contenedor */
+}
+
+.product-content {
+    padding: 20px;
 }
 
 .product-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Título y precio en lados opuestos */
     align-items: center;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 .product-title {
-    font-weight: bold;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
 }
 
 .product-price {
-    color: #D2691E;
+    font-size: 1em;
+    color: #ff6f00; /* Naranja para el precio */
+    font-weight: 500;
+}
+
+.product-description {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.4;
+    margin: 0;
+    overflow: hidden; /* Ocultar el texto que se salga */
+    text-overflow: ellipsis; /* Agregar puntos suspensivos */
+    display: -webkit-box; /* Para truncar en varias líneas */
+    -webkit-line-clamp: 3; /* Mostrar máximo 3 líneas */
+    -webkit-box-orient: vertical;
 }
 
 /* Paginación */
 .pagination {
-    text-align: center;
-    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.pagination p {
+    margin-right: 20px;
+    color: #555;
 }
 
 .pagination-buttons .btn {
-    background: #8B5E3C;
-    color: white;
-    padding: 10px;
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 5px;
+    background-color: #eee;
+    color: #333;
     text-decoration: none;
     border-radius: 5px;
-    margin: 0 5px;
+    border: none;
+    transition: background-color 0.3s ease; /* Transición para el hover */
 }
 
 .pagination-buttons .btn:hover {
-    background: #5C3D2E;
+    background-color: #ddd; /* Cambio de color al pasar el mouse */
 }
 
-.add-to-cart-button {
-    background-color: #0d6efd; /* Azul Bootstrap */
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 90%; /* Ocupar casi todo el ancho */
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 6px; /* Bordes redondeados */
-    transition: background-color 0.3s ease, transform 0.1s ease;
-}
 
-.add-to-cart-button:hover {
-    background-color: #0b5ed7; /* Azul más oscuro al pasar el mouse */
-}
+/* Media queries para hacerlo responsivo */
+@media (max-width: 768px) {
+    .shop-container {
+        flex-direction: column; /* Diseño en columna en pantallas pequeñas */
+    }
 
-.add-to-cart-button:active {
-    transform: translateX(-50%) scale(0.98); /* Efecto de clic */
-}
+    .filter-sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+        display: none; /* Ocultar el sidebar por defecto */
+    }
 
-/* Ajuste para que el botón no se superponga al contenido */
-.product-card {
-    position: relative;
-    padding-bottom: 50px; /* Espacio suficiente para el botón */
+    .toggle-button {
+        display: block; /* Mostrar el botón en pantallas pequeñas */
+    }
+
+    .product-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajustar el ancho mínimo de las tarjetas */
+    }
 }

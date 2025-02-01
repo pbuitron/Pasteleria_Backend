@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🛒 Carrito de Compras</h2>
+
+    {{#if carrito.products.length}}
+        <div class="row">
+            {{#each carrito.products}}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-lg">
+                        <img src="{{this.product.thumbnails}}" class="card-img-top" alt="{{this.product.title}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.product.title}}</h5>
+                            <p class="card-text">{{this.product.description}}</p>
+                            <p class="fw-bold">Precio: ${{this.product.price}}</p>
+                            <p>Cantidad: <span class="quantity">{{this.quantity}}</span></p>
+                            <button class="btn btn-danger btn-sm remove-product" data-id="{{this.product._id}}">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="text-center mt-4">
+            <h4>Total: S/. <span id="total-price">0</span></h4>
+        </div>
+    {{else}}
+        <p class="text-center text-muted">Tu carrito está vacío 🛒</p>
+    {{/if}}
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let totalPrice = 0;
+
+        document.querySelectorAll(".quantity").forEach((qty, index) => {
+            const price = parseFloat(document.querySelectorAll(".card-text + p")[index].innerText.replace("Precio: $", ""));
+            totalPrice += price * parseInt(qty.innerText);
+        });
+
+        document.getElementById("total-price").innerText = totalPrice.toFixed(2);
+
+        document.querySelectorAll(".remove-product").forEach(button => {
+            button.addEventListener("click", async function () {
+                const productId = this.getAttribute("data-id");
+
+                try {
+                    const response = await fetch(`/api/products/${productId}`, { method: "DELETE" });
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert(result.message);
+                        location.reload();
+                    } else {
+                        alert("Error: " + result.error);
+                    }
+                } catch (error) {
+                    console.error("Error al eliminar producto:", error);
+                }
+            });
+        });
+    });
+</script>

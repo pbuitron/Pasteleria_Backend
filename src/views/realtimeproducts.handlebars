@@ -1,7 +1,7 @@
 <div class="container">
     <div id="productos" class="productos"></div>
     <h1>Crear Nuevo Producto</h1>
-    <form id="uploadForm" method="post" action="/" enctype="multipart/form-data">
+    <form id="uploadForm" method="post" action="/realtimeproducts" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Título:</label>
             <input type="text" id="title" name="title">
@@ -31,10 +31,10 @@
             <label for="category">Categoría:</label>
             <select id="category" name="category">
                 <option value="">Seleccione una categoría</option>
-                <option value="Tortas">Tortas</option>
-                <option value="Bocaditos">Bocaditos</option>
-                <option value="Galletas">Galletas</option>
-                <option value="Postres">Postres</option>
+                <option value="San Valentin">San Valentin</option>
+                <option value="Pasteles de Chocolate">Pasteles de Chocolate</option>
+                <option value="Pasteles de Vainilla">Pasteles de Vainilla</option>
+                <option value="Pasteles de Frutas">Pasteles de Frutas</option>
             </select>
         </div>
 
@@ -59,7 +59,7 @@
                 <span>Haga clic para cargar o arrastre y suelte</span>
                 <span class="file-name">Solo imagenes JPG y PNG</span>
             </label>
-            <input id="thumbnails" type="file" name="thumbnails" required>
+            <input id="thumbnails" type="file" name="thumbnails">
         </div>
 
         <button type="submit" class="submit-button" id="crear-producto">Crear producto</button>

@@ -40,8 +40,14 @@ productRouter.route('/')
     
     const productos = await productManager.getAllProducts(limitNumber, pageNumber, filter, sortOption);
     console.log(productos);
-   
-    res.render('home', {
+    return res.status(201).json({
+      message:"Documentos obtenidos exitosamente",
+      productos
+      
+      
+    })
+    
+    /*res.render('home', {
       
       productos: productos.docs,
       pagination: {
@@ -56,7 +62,7 @@ productRouter.route('/')
       title: 'Productos en Stock',
       path: 'home',
     });
-  
+  */
   } catch (error) {
     console.error('Error al obtener productos:', error);
     res.status(500).json({ status: "error", message: "Error interno del servidor" });

@@ -6,36 +6,38 @@ import mongoosePaginate from "mongoose-paginate-v2"
  {
     title:{
         type: String,
+        required: true
         
          
     },
     description: {
         type: String,
-       
+        required: true
     },
     code: {
         type: String,
-       
-        unique: true
+        unique:true,
+        required: true
     },
     price: {
         type: Number,
-        
+        required: true
     },
     status: {
         type: Boolean,
-        default: true
+        required: true
     },
     stock: {
         type: Number,
+        required: true
         
     },
     category: {
         type: String,
-        
+        required: true
     },
     thumbnails : {
-        type: String,
+        type: String
     }
 }, { timestamps: true }
 

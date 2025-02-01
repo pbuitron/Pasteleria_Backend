@@ -1,109 +1,100 @@
-/* Importar una tipografía moderna */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif; /* Fuente similar a la de Dulcefina */
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Color de fondo similar */
+}
+.product-title {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
     color: #333;
 }
 
-/* Contenedor principal */
 .product-detail-container {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 3rem;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
-    margin: auto;
+    flex-wrap: wrap; /* Para que se ajuste en pantallas pequeñas */
+    justify-content: center; /* Centrar horizontalmente */
+    gap: 40px; /* Espacio entre imagen y detalles */
+    padding: 20px;
+    max-width: 900px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor */
 }
 
-/* Contenedor de la imagen */
 .product-image-box {
-    flex: 1;
-    max-width: 400px;
-    text-align: center;
+    flex: 1; /* La imagen ocupa parte del espacio */
+    max-width: 45%; /* Ancho máximo de la imagen */
+    overflow: hidden; /* Para que la imagen no se salga */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
 .product-image-large {
     width: 100%;
-    max-width: 400px;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    height: auto;
+    display: block;
+    object-fit: contain; /* Ajustar la imagen al contenedor */
+    border-radius: 8px;
 }
 
-/* Contenedor de la información */
 .product-info-box {
-    flex: 1;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    padding: 1.5rem;
+    flex: 1; /* La información ocupa parte del espacio */
+    max-width: 45%; /* Ancho máximo de la información */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-/* Encabezado */
-.product-title {
-    font-size: 2.2rem;
-    text-align: center;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-/* Nombre del producto */
 .product-name {
-    font-size: 2rem;
+    font-size: 1.5em;
     font-weight: 600;
-    color: #1a1a1a;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-/* Descripción */
-.product-description {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
-}
-
-/* Precio */
-.product-price {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #e74c3c;
-}
-
-/* Categoría y stock */
+.product-description,
+.product-price,
 .product-category,
 .product-stock {
-    font-size: 1rem;
-    color: #7f8c8d;
-    font-weight: 400;
+    margin-bottom: 10px;
+    color: #555;
 }
 
-/* Botón */
+.product-description strong,
+.product-price strong,
+.product-category strong,
+.product-stock strong {
+    font-weight: 600;
+    color: #333;
+}
+
 .add-to-cart-btn {
-    display: inline-block;
-    width: 100%;
-    padding: 14px 20px;
-    background: linear-gradient(135deg, #1961e7, #093ff3);
-    color: white;
-    font-size: 1.3rem;
-    font-weight: bold;
+    background-color: #ff6f00; /* Naranja */
+    color: #fff;
+    padding: 12px 20px;
     border: none;
-    border-radius: 12px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-align: center;
+    font-weight: 600;
+    transition: background-color 0.3s ease; /* Transición para el hover */
 }
 
 .add-to-cart-btn:hover {
-    background: linear-gradient(135deg, #1468d6, #0885d8);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 117, 140, 0.3);
+    background-color: #e65100; /* Naranja más oscuro al pasar el mouse */
+}
+
+/* Media queries para hacerlo responsivo */
+@media (max-width: 768px) {
+    .product-detail-container {
+        flex-direction: column; /* Diseño en columna */
+        align-items: center; /* Centrar verticalmente */
+        gap: 20px;
+    }
+
+    .product-image-box,
+    .product-info-box {
+        max-width: 90%; /* Ocupan casi todo el ancho */
+    }
 }

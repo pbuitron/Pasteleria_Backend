@@ -194,7 +194,7 @@ body {
   .alert.error {
     background-color: #f44336; /* Rojo para error */
   }
-  
+
   /* Animaciones */
   @keyframes slideIn {
     to {
