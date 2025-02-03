@@ -1,0 +1,50 @@
+body {
+  font-family: 'Poppins', sans-serif; /* Fuente similar a la de Dulcefina */
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8; /* Color de fondo similar */
+}
+
+.error-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Para que la página ocupe toda la altura de la pantalla */
+    background-color: #f8f8f8; /* Color de fondo suave */
+    font-family: 'Poppins', sans-serif; /* Fuente moderna (puedes usar otra) */
+  }
+  
+  .error-content {
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
+  .error-title {
+    font-size: 4em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  .error-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #ff6f00; /* Naranja (puedes usar otro color) */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+  }
+  
+  .error-button:hover {
+    background-color: #e65100; /* Naranja más oscuro al pasar el mouse */
+  }

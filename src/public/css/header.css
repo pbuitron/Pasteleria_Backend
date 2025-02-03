@@ -1,23 +1,65 @@
-/* Estilos para el componente Header */
-header {
-    background-color: #F8E0E6; /* Rosa pastel suave */ 
+/* Estilos para el encabezado */
+
+.main-header {
+  background-color: #fff; /* Color de fondo blanco */
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  position: sticky; /* Fijar el encabezado al hacer scroll */
+  top: 0; /* Se pega a la parte superior */
+  z-index: 100; /* Asegura que esté por encima de otros elementos */
+}
+
+.header-content {
+  max-width: 1200px; /* Ancho máximo del contenido */
+  margin: 0 auto; /* Centrar horizontalmente */
+  display: flex;
+  justify-content: space-between; /* Espacio entre logo y navegación */
+  align-items: center; /* Alinear verticalmente */
+}
+
+.header-logo {
+  /* Estilos para el logo (si es necesario) */
+}
+
+.logo-image {
+  max-height: 100px; /* Altura máxima del logo */
+}
+
+.header-nav ul {
+  list-style: none; /* Eliminar viñetas */
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.header-nav li {
+  margin-left: 20px; /* Espacio entre elementos de navegación */
+}
+
+.header-nav a {
+  text-decoration: none; /* Eliminar subrayado */
+  color: #333; /* Color de texto oscuro */
+  font-weight: 500;
+  transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+.header-nav a:hover {
+  color: #ff6f00; /* Naranja al pasar el mouse */
+}
+
+/* Media queries para hacerlo responsivo */
+@media (max-width: 768px) {
+  .header-content {
+      flex-direction: column; /* Diseño en columna */
+      align-items: flex-start; /* Alinear a la izquierda en pantallas pequeñas */
   }
-  
-  .navbar-brand {
-    font-family: 'Pacifico', cursive; /* Fuente manuscrita */
-    color: #D46A6A; /* Rosa intenso */
+
+  .header-nav ul {
+      flex-direction: column; /* Navegación en columna */
+      margin-top: 10px;
   }
-  
-  .nav-link {
-    color: #D46A6A; /* Rosa intenso */
+
+  .header-nav li {
+      margin: 10px 0; /* Espacio vertical en pantallas pequeñas */
   }
-  
-  .nav-link.active {
-    color: #9C2727; /* Rojo oscuro */ 
-    font-weight: bold;
-  }
-  
-  /* Opcional: Agregar un borde inferior sutil */
-  .navbar {
-    border-bottom: 1px solid #D46A6A; 
-  }
+}

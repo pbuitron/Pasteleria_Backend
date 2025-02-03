@@ -21,8 +21,12 @@ connectToDDBB()
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
 app.use('/', viewRouter)
-
-
+app.use('*', (req, res) => {
+    res.status(404).render('404',{ 
+        title: 'Página no encontrada',
+    path:'404' })
+    
+});
 
 
 //HANDLEBARS

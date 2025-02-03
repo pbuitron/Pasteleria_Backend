@@ -1,6 +1,8 @@
 
 .container {
   background-color: white;
+  display: flex;
+  flex-direction: column;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -71,16 +73,7 @@ textarea {
 
 
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f4f6;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+
   
   .container {
     width: 100%;
