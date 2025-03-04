@@ -112,7 +112,6 @@ viewRouter.route('/realtimeproducts')
   }
 })
 
-
 .post(upload.single('thumbnails'), async (req, res) => {
   try {
     const nuevoProducto = await productManager.createProduct(req);
@@ -133,4 +132,13 @@ viewRouter.route('/realtimeproducts')
     }
   }
 });
+
+viewRouter.get('/login', (req, res) => {
+  res.render('login', { title: 'Login' });
+});
+
+viewRouter.get('/register', (req, res) => {
+  res.render('register', { title: 'Registro' });
+});
+
 export default viewRouter
